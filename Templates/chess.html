@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page Title</title>
+    </head>
+    <body>
+        <form id="chess_form" action="/chess" method="POST">
+            <label for=note>How do you enjoyed chess game?</label><br>
+            <select id="note" name="note">
+                <option value="5">It was great!</option>
+                <option value="4">It was very good</option>
+                <option value="3" selected>It was just good</option>
+                <option value="2">It was poor</option>
+                <option value="1">It was horrible!</option>
+            </select><br>
+
+            <label for=comment>Write down your comments:</label><br>
+            <textarea id="comment" name="comment" rows="3" cols="50">
+            </textarea><br>
+
+            <label for="decision">Would you recommand this for everyone?</label><br>
+            <input type="checkbox" id="decision" name="decision"><br>
+
+            <input type="submit" value="Share my feedback">
+        </form>
+    </body>
+</html>
