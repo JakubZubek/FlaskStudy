@@ -103,6 +103,7 @@ def activites():
 @app.route("/creators")
 def creators():
     return (render_template("creators.html", active_menu="creators"))
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
@@ -119,6 +120,13 @@ def login():
             return redirect(url_for("index"))
         else:
             return render_template("login.html")
+
+@app.route("/logout")
+def logout():
+    if "user" in session:
+        session.pop("user", None)
+        flash("You are logout")
+    return redirect (url_for("login"))
 
 if __name__ == "main":
     app.run(debug=True)
