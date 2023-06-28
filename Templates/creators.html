@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        {% block content %}
+        <h1>Szachowi twórcy godni polecenia</h1>
+        <img id="banner" src="/static/pawns.jpg">
+        <div id="content">
+        <h2>Jaskol95</h2>
+        <img id="photo" src="/static/jaskol.jpg" class="rounded mx-auto d-block">
+        <p>Gra w szachy od ponad 15 lat i dzieli się swoją wiedzą na Twitchu i FB.</p>
+        <h2> Dawid Czerw</h2>
+        <img id="photo" src="/static/Dawid.jpg" class="rounded mx-auto d-block">
+        <p>Posiada tytuł IM, prowadzi blog Dawidszachuje.pl</p>
+        <h2> Bartek Rudecki</h2>
+        <img id="photo" src="/static/xntentation.jpg" class="rounded mx-auto d-block">
+        <p>Mistrzyni Radomska, propagator szachów na skalę światową</p>
+        <h2> Marianczello Dominoni</h2>
+        <img id="photo" src="/static/marianczello.jpg" class="rounded mx-auto d-block">
+        <p>Jeden z pierwszych youtuberów szachowych</p>
+        </div>
+        {% endblock %}
+    </body>
+</html>
