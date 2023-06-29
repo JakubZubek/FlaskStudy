@@ -137,5 +137,59 @@ def settings():
 def feedback():
     return render_template("feedback.html")
 
+@app.route("/user_status_change/<action>/<user_name>")
+def user_status_change(action, user_name):
+    return "to be done"
+
+@app.route("/edit_user/<user_name>", methods=["GET", "POST"])
+def edit_user(user_name):
+    return "to be done"
+
+@app.route("/user_delete/<user_name>")
+def delete_user(user_name):
+    return "to be done"
+
+@app.route("/new_user", methods=["GET", "POST"])
+def new_user():
+    if not "user" in session:
+        return redirect (url_for("login"))
+    login = session["user"]
+
+    db = get_db()
+    message = None
+    user = {}
+
+    if request.method =="GET":
+        return render_template("new_user.html", user=user)
+    else:
+        print (request.form)
+        user["user_name"] = "" if not "user_name" in request.form else request.form["user_name"]
+        user["email"] = "" if not "email" in request.form else request.form["email"]
+        user["user_password"] = "" if not "user_password" in request.form else request.form["user_password"]
+        user["is_author"] = False if not "is_author" in request.form else True
+        user["is_admin"] = False if not "is_admin" in request.form else True
+        cursor = db.execute("select count(*) as cnt from users where name = ?", [user["user_name"]])
+        record = cursor.fetchone()
+        is_user_name_unique = (record["cnt"] == 0)
+
+        #print (user["is_author"])
+
+        cursor = db.execute("select count(*) as cnt from users where email = ?", [user["email"]])
+        record = cursor.fetchone()
+        is_user_email_unique = (record["cnt"] == 0)
+
+        if user["user_name"] == "":
+            message = "Nazwa nie może być pusta"
+        
+        if not message:
+            sql_statement = '''insert into users(name, email, password, is_author, is_admin) values (?,?,?,?,?);'''
+            db.execute(sql_statement, [user["user_name"], user["email"], user["user_password"], user["is_author"], user["is_admin"]])
+            db.commit()
+            flash("Użytkonik {} utworzony".format(user["user_name"]))
+            return redirect(url_for("creators"))
+        else:
+            flash("Błąd")
+            return render_template ("new_user.html", user=user)
+
 if __name__ == "main":
     app.run(debug=True)
