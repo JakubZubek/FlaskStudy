@@ -119,6 +119,7 @@ def login():
             session["user"] = user_name
             return redirect(url_for("index"))
         else:
+            flash("Błedne dane")
             return render_template("login.html")
 
 @app.route("/logout")
@@ -127,6 +128,14 @@ def logout():
         session.pop("user", None)
         flash("You are logout")
     return redirect (url_for("login"))
+
+@app.route("/settings")
+def settings():
+    return render_template("settings.html")
+
+@app.route("/feedback")
+def feedback():
+    return render_template("feedback.html")
 
 if __name__ == "main":
     app.run(debug=True)

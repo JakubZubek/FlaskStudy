@@ -12,8 +12,11 @@
         <img id="banner" src="/static/oneknight.jpg">
         <h2>Puzzle codzienne</h2>
         <iframe style="width: 400px; height: 560px;" src="https://www.chess.com/daily_puzzle" frameborder="0"></iframe>
-        <a href="https://www.chess.com/play/online/new?opponent=Anzel256">WYZWIJ MNIE NA POJEDYNEK</a>
-        <p>This is a paragraph.</p>
+        <div class="d-grid gap-2">
+            <form action="https://www.chess.com/play/online/new?opponent=Anzel256">
+                <input type="submit" value="Wyzwij mnie na pojedynek" />
+            </form>
+          </div>
         </div>
         {% endblock %}
     </body>
