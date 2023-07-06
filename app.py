@@ -137,6 +137,15 @@ def settings():
 def feedback():
     return render_template("feedback.html")
 
+@app.route("/show_users")
+def show_users():
+    db = get_db()
+    sql_command = "select id, name, email, is_author, is_admin from users;"
+    cur = db.execute(sql_command)
+    users = cur.fetchall()
+    return render_template("users.html", users = users)
+    
+
 @app.route("/user_status_change/<action>/<user_name>")
 def user_status_change(action, user_name):
     return "to be done"
